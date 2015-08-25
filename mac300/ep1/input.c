@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "input.h"
 
@@ -57,7 +56,7 @@ double **cria_Matriz ( FILE *arq, int dimensao ){
       }
 
       for ( cont = 0; cont < dimensao * dimensao; cont ++ ) {
-         fscanf ( arq, "%d %d %g", &i, &j, &valor );
+         fscanf ( arq, "%d %d %lf", &i, &j, &valor );
          
          if ( i < 0 || i >= dimensao || j < 0 || j >= dimensao || valor < 0 ) {
             fprintf ( stderr, "ERROR: invalid input: cria_Matriz\n" );
@@ -95,11 +94,42 @@ double *cria_b ( FILE *arq, int dimensao ) {
          b = destroi_b ( b );
       } else {
          for ( cont = 0; cont < dimensao; cont++ ) {
-            fscanf ( arq, "%g", &valor );
+            fscanf ( arq, "%lf", &valor );
             b[cont] = valor;
          }
       }
    }
 
    return b;
+}
+
+int main ( int argc, char **argv ) {
+   FILE *arq;
+   double **A, *b;
+   int dimensao, i, j;
+
+   arq = fopen ( argv[1], "r" );
+
+   dimensao = le_dimensao ( arq );
+
+   A = cria_Matriz ( arq, dimensao );
+
+   for ( i = 0; i < dimensao; i++ ) {
+      for ( j = 0; j < dimensao; j++ )
+         printf ( "%f ", A[i][j] );
+      printf ( "\n" );
+   }
+
+   b = cria_b ( arq, dimensao );
+
+   for ( i = 0; i < dimensao; i++ )
+      printf ( "%f\n", b[i] );
+
+   A = destroi_Matriz ( dimensao, A );
+
+   b = destroi_b ( b );
+
+   fclose ( arq );
+
+   return 0;
 }
