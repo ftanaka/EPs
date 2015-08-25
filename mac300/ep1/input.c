@@ -4,7 +4,18 @@
 
 #include "input.h"
 
-int le_dimensao ( FILE *arq );
+int le_dimensao ( FILE *arq ) {
+   int dimensao;
+
+   dimensao = -1;
+
+   if ( arq != NULL )
+      fscanf ( arq, "%d", &dimensao );
+   else
+      fprintf ( stderr, "ERROR: can not read file.\n" );
+
+   return dimensao;
+}
 
 double **destroi_Matriz ( int dimensao, double **matriz );
 
