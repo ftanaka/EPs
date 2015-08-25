@@ -32,7 +32,44 @@ double **destroi_Matriz ( int dimensao, double **matriz ) {
    return NULL;
 }
 
-double **cria_Matriz ( FILE *arq, int dimensao );
+double **cria_Matriz ( FILE *arq, int dimensao ){
+   int i, j, cont;
+   double valor, **A;
+
+   i = j = cont = -1;
+   valor = -1;
+   A   = NULL;
+
+   if ( arq == NULL )
+      fprintf ( stderr, "ERROR: can not read file: cria_Matriz.\n" );
+   else {
+      A = malloc ( dimensao * sizeof ( double ** ) );
+      if ( A == NULL )
+         fprintf ( stderr, "ERROR: malloc (1) failed: cria_Matriz\n" );
+      else {
+         for ( cont = 0; cont < dimensao; cont++ ) {
+            A[cont] = malloc ( dimensao * sizeof ( double * ) );
+            if ( A[cont] == NULL ) {
+               fprintf ( stderr, "ERROR: malloc (2) failed: cria_Matriz\n" );
+               A = destroi_Matriz ( dimensao, A );
+            }
+         }
+      }
+
+      for ( cont = 0; cont < dimensao * dimensao; cont ++ ) {
+         fscanf ( arq, "%d %d %g", &i, &j, &valor );
+         
+         if ( i < 0 || i >= dimensao || j < 0 || j >= dimensao || valor < 0 ) {
+            fprintf ( stderr, "ERROR: invalid input: cria_Matriz\n" );
+            A = destroi_Matriz ( dimensao, A );
+            break;
+         } else
+            A[i][j] = valor;
+      }
+   }
+
+   return A;
+}
 
 double *destroi_b ( double *b );
 
