@@ -17,7 +17,18 @@ int le_dimensao ( FILE *arq ) {
    return dimensao;
 }
 
-double **destroi_Matriz ( int dimensao, double **matriz );
+double **destroi_Matriz ( int dimensao, double **matriz ) {
+   int i;
+
+   if ( matriz != NULL ) {
+      for ( i = 0; i < dimensao; i++ )
+         if ( matriz[i] != NULL )
+            free ( matriz[i] );
+      free ( matriz );
+   }
+
+   return NULL;
+}
 
 double **cria_Matriz ( FILE *arq, int dimensao );
 
