@@ -7,3 +7,7 @@ all = DEPS
 
 input.o: input.c
 	$(CC) $(CFLAGS) -c $^
+
+.PHONY = clear
+clear:
+	rm -rf *.o
