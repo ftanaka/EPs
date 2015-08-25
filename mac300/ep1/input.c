@@ -71,6 +71,11 @@ double **cria_Matriz ( FILE *arq, int dimensao ){
    return A;
 }
 
-double *destroi_b ( double *b );
+double *destroi_b ( double *b ) {
+   if ( b != NULL )
+      free ( b );
+
+   return NULL;
+}
 
 double *cria_b ( FILE *arq, int dimensao );
