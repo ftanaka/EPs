@@ -78,4 +78,28 @@ double *destroi_b ( double *b ) {
    return NULL;
 }
 
-double *cria_b ( FILE *arq, int dimensao );
+double *cria_b ( FILE *arq, int dimensao ) {
+   int cont;
+   double valor, *b;
+
+   cont = -1;
+   valor = -1;
+   b = NULL;
+
+   if ( arq == NULL )
+      fprintf ( stderr, "ERROR: can not read file: cria_b\n" );
+   else {
+      b = malloc ( dimensao * sizeof ( double ) );
+      if ( b == NULL ) {
+         fprintf ( stderr, "ERROR: malloc failed: cria_b\n" );
+         b = destroi_b ( b );
+      } else {
+         for ( cont = 0; cont < dimensao; cont++ ) {
+            fscanf ( arq, "%g", &valor );
+            b[cont] = valor;
+         }
+      }
+   }
+
+   return b;
+}
