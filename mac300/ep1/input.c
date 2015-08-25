@@ -9,9 +9,11 @@ int le_dimensao ( FILE *arq ) {
 
    dimensao = -1;
 
-   if ( arq != NULL )
+   if ( arq != NULL ){
       fscanf ( arq, "%d", &dimensao );
-   else
+      if ( dimensao <= 0 )
+         fprintf ( stderr, "ERROR: invalid dimension value:le_dimensao\n" );
+   } else
       fprintf ( stderr, "ERROR: can not read file.\n" );
 
    return dimensao;
