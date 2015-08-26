@@ -16,15 +16,15 @@ int main ( int argc, char **argv ) {
 
    dimensao = le_dimensao ( arq );
 
-   A = cria_Matriz ( arq, dimensao );
+   A = cria_matriz ( arq, dimensao );
 
-   imprime_Matriz ( dimensao, A );
+   imprime_matriz ( dimensao, A );
 
    b = cria_b ( arq, dimensao );
 
    imprime_b ( dimensao, b );
 
-   A = destroi_Matriz ( dimensao, A );
+   A = destroi_matriz ( dimensao, A );
 
    b = destroi_b ( b );
 
