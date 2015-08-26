@@ -113,6 +113,13 @@ double *cria_b ( FILE *arq, int dimensao ) {
    return b;
 }
 
+void imprime_b ( int dimensao, double *b ) {
+   int i;
+
+   for ( i = 0; i < dimensao; i++ )
+      fprintf ( stdout, "%f\n", b[i] );
+}
+
 int main ( int argc, char **argv ) {
    FILE *arq;
    double **A, *b;
