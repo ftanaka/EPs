@@ -18,7 +18,7 @@ int le_dimensao ( FILE *arq ) {
    return dimensao;
 }
 
-double **destroi_Matriz ( int dimensao, double **matriz ) {
+double **destroi_matriz ( int dimensao, double **matriz ) {
    int i;
 
    if ( matriz != NULL ) {
@@ -31,7 +31,7 @@ double **destroi_Matriz ( int dimensao, double **matriz ) {
    return NULL;
 }
 
-double **cria_Matriz ( FILE *arq, int dimensao ){
+double **cria_matriz ( FILE *arq, int dimensao ){
    int i, j, cont;
    double valor, **A;
 
@@ -40,17 +40,17 @@ double **cria_Matriz ( FILE *arq, int dimensao ){
    A   = NULL;
 
    if ( arq == NULL )
-      fprintf ( stderr, "ERROR: can not read file: cria_Matriz.\n" );
+      fprintf ( stderr, "ERROR: can not read file: cria_matriz.\n" );
    else {
       A = malloc ( dimensao * sizeof ( double ** ) );
       if ( A == NULL )
-         fprintf ( stderr, "ERROR: malloc (1) failed: cria_Matriz\n" );
+         fprintf ( stderr, "ERROR: malloc (1) failed: cria_matriz\n" );
       else {
          for ( cont = 0; cont < dimensao; cont++ ) {
             A[cont] = malloc ( dimensao * sizeof ( double * ) );
             if ( A[cont] == NULL ) {
-               fprintf ( stderr, "ERROR: malloc (2) failed: cria_Matriz\n" );
-               A = destroi_Matriz ( dimensao, A );
+               fprintf ( stderr, "ERROR: malloc (2) failed: cria_matriz\n" );
+               A = destroi_matriz ( dimensao, A );
             }
          }
       }
@@ -59,8 +59,8 @@ double **cria_Matriz ( FILE *arq, int dimensao ){
          fscanf ( arq, "%d %d %lf", &i, &j, &valor );
          
          if ( i < 0 || i >= dimensao || j < 0 || j >= dimensao || valor < 0 ) {
-            fprintf ( stderr, "ERROR: invalid input: cria_Matriz\n" );
-            A = destroi_Matriz ( dimensao, A );
+            fprintf ( stderr, "ERROR: invalid input: cria_matriz\n" );
+            A = destroi_matriz ( dimensao, A );
             break;
          } else
             A[i][j] = valor;
@@ -70,7 +70,7 @@ double **cria_Matriz ( FILE *arq, int dimensao ){
    return A;
 }
 
-void imprime_Matriz ( int dimensao, double **matriz ) {
+void imprime_matriz ( int dimensao, double **matriz ) {
    int i, j;
 
    for ( i = 0; i < dimensao; i++ ) {
