@@ -7,10 +7,10 @@ int main ( int argc, char **argv ) {
    FILE *arq;
 
    double **A, *b;
-   int dimensao, i, j;
+   int dimensao;
 
    if ( argc < 2 )
-      arq = fopen ( stdin, "r" );
+      arq = stdin;
    else
       arq = fopen ( argv[1], "r" );
 
@@ -26,9 +26,9 @@ int main ( int argc, char **argv ) {
 
    A = destroi_Matriz ( dimensao, A );
 
-   b = destroi_b ( dimensao, b );
+   b = destroi_b ( b );
 
-   fclose ( b );
+   fclose ( arq );
 
    return 0;
 }
