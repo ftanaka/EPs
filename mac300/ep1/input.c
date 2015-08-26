@@ -119,34 +119,3 @@ void imprime_b ( int dimensao, double *b ) {
    for ( i = 0; i < dimensao; i++ )
       fprintf ( stdout, "%f\n", b[i] );
 }
-
-int main ( int argc, char **argv ) {
-   FILE *arq;
-   double **A, *b;
-   int dimensao, i, j;
-
-   arq = fopen ( argv[1], "r" );
-
-   dimensao = le_dimensao ( arq );
-
-   A = cria_Matriz ( arq, dimensao );
-
-   for ( i = 0; i < dimensao; i++ ) {
-      for ( j = 0; j < dimensao; j++ )
-         printf ( "%f ", A[i][j] );
-      printf ( "\n" );
-   }
-
-   b = cria_b ( arq, dimensao );
-
-   for ( i = 0; i < dimensao; i++ )
-      printf ( "%f\n", b[i] );
-
-   A = destroi_Matriz ( dimensao, A );
-
-   b = destroi_b ( b );
-
-   fclose ( arq );
-
-   return 0;
-}
