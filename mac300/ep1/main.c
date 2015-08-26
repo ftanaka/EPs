@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "input.h"
+#include "cholesky.h"
 
 int main ( int argc, char **argv ) {
    FILE *arq;
