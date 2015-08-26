@@ -70,6 +70,16 @@ double **cria_Matriz ( FILE *arq, int dimensao ){
    return A;
 }
 
+void imprime_Matriz ( int dimensao, double **matriz ) {
+   int i, j;
+
+   for ( i = 0; i < dimensao; i++ ) {
+      for ( j = 0; j < dimensao; j++ )
+         fprintf ( stdout, "%f ", matriz[i][j] );
+      fprintf ( stdout, "\n" );
+   }
+}
+
 double *destroi_b ( double *b ) {
    if ( b != NULL )
       free ( b );
