@@ -3,13 +3,13 @@ CFLAGS = -Wall -pedantic -ansi -g
 
 DEPS = input.o
 
-all = $(DEPS) out
+all = exe
+
+exe: $(DEPS) main.c
+	$(CC) $(CFLAGS) $^
 
 input.o: input.c
 	$(CC) $(CFLAGS) -c $^
-
-out: $(DEPS)
-	$(CC) $(CFLAGS) $(DEPS) main.c
 
 .PHONY = clear
 clear:
