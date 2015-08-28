@@ -58,7 +58,7 @@ double **cria_matriz ( FILE *arq, int dimensao ){
       for ( cont = 0; cont < dimensao * dimensao; cont ++ ) {
          fscanf ( arq, "%d %d %lf", &i, &j, &valor );
          
-         if ( i < 0 || i >= dimensao || j < 0 || j >= dimensao || valor < 0 ) {
+         if ( i < 0 || i >= dimensao || j < 0 || j >= dimensao ) {
             fprintf ( stderr, "ERROR: invalid input: cria_matriz\n" );
             A = destroi_matriz ( dimensao, A );
             break;
