@@ -8,7 +8,7 @@ int main ( int argc, char **argv ) {
    FILE *arq;
 
    double **A, *b;
-   int dimensao;
+   int dimensao, retorno;
 
    if ( argc < 2 )
       arq = stdin;
@@ -24,6 +24,10 @@ int main ( int argc, char **argv ) {
    b = cria_b ( arq, dimensao );
 
    imprime_b ( dimensao, b );
+
+   retorno = cholrow ( dimensao, A );
+
+   imprime_matriz ( dimensao, A );
 
    A = destroi_matriz ( dimensao, A );
 
