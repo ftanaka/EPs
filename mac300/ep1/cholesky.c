@@ -30,6 +30,20 @@ int cholcol ( int n, double **A ) {
 
 int cholrow ( int n, double **A ) {
    int i, j, k;
+   double s;
+
+   for ( i = 0; i < n; i++ ) {
+      for ( j = 0; j < n; j++ ) {
+
+         for ( k = 0, s = 0; k < j; k++ )
+            s += A[i][k] * A[j][k];
+
+         if ( i == j )
+            A[i][j] = sqrt ( A[i][j] - s );
+         else
+            A[i][j] = ( A[i][j] - s ) / A[j][j];
+      }
+   }
 
    return 0;
 }
