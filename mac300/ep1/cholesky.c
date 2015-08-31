@@ -31,18 +31,5 @@ int cholcol ( int n, double **A ) {
 int cholrow ( int n, double **A ) {
    int i, j, k;
 
-   for ( i = 0; i < n; i++ ) {
-      for ( j = 0; j < i; j++ ) {
-         for( k = 0; k < i; k++ )
-            A[i][j] = A[i][j] - A[i][k] * A[j][k];
-         A[i][i] = A[i][i] - pow ( A[i][j], 2 );
-      }
-
-      if ( A[i][i] <= 0 ) /* matriz A nao e definida positiva */
-         return -1;
-
-      A[i][i] = sqrt ( A[i][i] );
-   }
-
    return 0;
 }
