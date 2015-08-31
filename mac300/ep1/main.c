@@ -20,10 +20,12 @@ int main ( int argc, char **argv ) {
    A = cria_matriz ( arq, dimensao );
 
    imprime_matriz ( dimensao, A );
+   printf ( "\n" );
 
    b = cria_b ( arq, dimensao );
 
    imprime_b ( dimensao, b );
+   printf ( "\n" );
 
    retorno = cholrow ( dimensao, A );
 
