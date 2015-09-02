@@ -32,7 +32,7 @@ int main ( int argc, char **argv ) {
    imprime_matriz ( dimensao, A );
    printf ( "\n" );
 
-   forwrow ( dimensao, A, b );
+   forwcol ( dimensao, A, b );
    imprime_b ( dimensao, b );
 
    A = destroi_matriz ( dimensao, A );
