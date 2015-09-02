@@ -30,6 +30,10 @@ int main ( int argc, char **argv ) {
    retorno = cholcol ( dimensao, A );
 
    imprime_matriz ( dimensao, A );
+   printf ( "\n" );
+
+   forw_row ( dimensao, A, b );
+   imprime_b ( dimensao, b );
 
    A = destroi_matriz ( dimensao, A );
 
