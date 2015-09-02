@@ -49,11 +49,11 @@ int forwrow ( int n, double **A, double *b ) {
    int i, j;
 
    for ( i = 0; i < n; i++ )
-      for ( j = 0; j < i; j++ ) {
-         if ( A[i][i] == 0 ) /* matriz A e singular */
-            return -1;
+      for ( j = 0; j < i; j++ )
          b[i] = b[i] - A[i][j] * b[j];
-      }
+      if ( A[i][i] == 0 ) /* matriz A e singular */
+         return -1;
+      b[i] = b[i] / A[i][i];
 
    return 0;
 }
