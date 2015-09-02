@@ -27,7 +27,7 @@ int main ( int argc, char **argv ) {
    imprime_b ( dimensao, b );
    printf ( "\n" );
 
-   retorno = cholcol ( dimensao, A );
+   retorno = cholrow ( dimensao, A );
 
    imprime_matriz ( dimensao, A );
 
