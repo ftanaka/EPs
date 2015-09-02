@@ -66,7 +66,7 @@ int forwcol ( int n, double **A, double *b ) {
       if ( A[j][j] == 0 ) /* matriz A e singular */
          return -1;
       b[j] = b[j] / A[j][j];
-      for ( i = 0; i < j; i++ )
+      for ( i = j + 1; i < n; i++ )
          b[i] = b[i] - A[i][j] * b[j];
    }
 
