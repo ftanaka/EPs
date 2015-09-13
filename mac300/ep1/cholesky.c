@@ -72,3 +72,63 @@ int forwcol ( int n, double **A, double *b ) {
 
    return 0;
 }
+
+int backrow ( int n, double **A, double *b, int trans ) {
+   int i, j;
+
+   if ( trans == 1 ) {
+      /* matriz triangular inferior == matriz triangular superior transposta */
+      for ( i = n - 1; i >= 0; i-- ) {
+         if ( A[i][i] == 0 ) /* matriz A e singular */
+            return -1;
+
+         b[i] = b[i] / A[i][i];
+
+         for ( j = i - 1; j >= 0; j-- )
+            b[j] = b[j] - A[i][j] * b[i];
+      }
+      return 0;
+   } else {
+      /* matriz triangular superior */
+      for ( i = n - 1; i >= 0; i-- ) {
+         for ( j = n - 1; j > i; j-- )
+            b[i] = b[i] - A[i][j] * b[j];
+
+         if ( A[i][i] == 0 ) /* matriz A e singular */
+            return -1;
+
+         b[i] = b[i] / A[i][i];
+      }
+      return 0;
+   }
+}
+
+int backcol ( int n, double **A, double *b, int trans ) {
+   int i, j;
+
+   if ( trans == 0 ) {
+      /* matriz triangular superior */
+      for ( j = n - 1; j >= 0; j-- ) {
+         if ( A[j][j] == 0 ) /* matriz A e singular */
+            return -1;
+
+         b[j] = b[j] / A[j][j];
+
+         for ( i = 0; i < j; i++ )
+            b[i] = b[i] - A[i][j] * b[j];
+      }
+      return 0;
+   } else {
+      /* matriz triangular inferior */
+      for ( j = n - 1; j >= 0; j-- ) {
+         for ( i = j + 1; i < n; i++ )
+            b[j] = b[j] - A[i][j] * b[i];
+
+         if ( A[j][j] == 0 ) /* matriz A e singular */
+            return -1;
+
+         b[j] = b[j] / A[j][j];
+      }
+      return 0;
+   }
+}
