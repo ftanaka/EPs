@@ -34,6 +34,8 @@ int main ( int argc, char **argv ) {
       printf ( "   2 - cholrow\n" );
       printf ( "   3 - forwcol\n" );
       printf ( "   4 - forwrow\n" );
+      printf ( "   5 - backcol\n" );
+      printf ( "   6 - backrow\n" );
       printf ( "   0 - sair\n" );
       scanf  ( "%d", &opt );
 
@@ -55,6 +57,13 @@ int main ( int argc, char **argv ) {
                   imprime_b ( dimensao, b );
                   printf ( "\n" );
                   break;
+         case 5 : retorno = backcol ( dimensao, A, b, 1 );
+                  imprime_b ( dimensao, b );
+                  printf ( "\n" );
+                  break;
+         case 6 : retorno = backrow ( dimensao, A, b, 1 );
+                  imprime_b ( dimensao, b );
+                  printf ( "\n" );
          case 0 : opt = -1;
                   break;
 
